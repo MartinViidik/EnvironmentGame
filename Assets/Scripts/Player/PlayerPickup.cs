@@ -23,6 +23,7 @@ public class PlayerPickup : MonoBehaviour
 
     public void PickupItem()
     {
+        FetchItemValues();
         resourceRef.SetActive(false);
         resourceRef = null;
     }
@@ -48,5 +49,11 @@ public class PlayerPickup : MonoBehaviour
     public void SetRadialFill(bool state)
     {
         pickupUI.GetComponent<RadialPickupUI>().SetFilling(state);
+    }
+
+    public void FetchItemValues()
+    {
+        Resource resource = resourceRef.GetComponent<Resource>();
+        GetComponent<PlayerInventory>().AddToInventory(resource, resource.amount);
     }
 }

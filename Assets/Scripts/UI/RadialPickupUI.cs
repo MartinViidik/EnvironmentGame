@@ -40,7 +40,8 @@ public class RadialPickupUI : MonoBehaviour
         if(radialFill.fillAmount == 1)
         {
             isFilling = false;
-            playerRef.GetComponent<PlayerPickup>().PickupItem();
+            radialFill.fillAmount = 0;
+            playerRef.GetComponent<PlayerPickup>().RadialUIFull();
         }
     }
 

@@ -494,6 +494,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper
       objectReference: {fileID: 0}
+    - target: {fileID: 1633070910805691762, guid: 7ee63b4621e7c94409269314c86c5b39,
+        type: 3}
+      propertyPath: amount
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1633070910805691763, guid: 7ee63b4621e7c94409269314c86c5b39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -627,6 +632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DeliveryPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262483464431041999, guid: c2d5bc3746ea9e34c86707dc31d574f9,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d5bc3746ea9e34c86707dc31d574f9, type: 3}

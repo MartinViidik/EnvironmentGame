@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Wire : MonoBehaviour
 {
-    private bool canHurtPlayer = true;
+    [HideInInspector]
+    public bool canHurtPlayer = true;
     private bool isWireActive = true;
 
     private float fuelDamage = 0.61f;

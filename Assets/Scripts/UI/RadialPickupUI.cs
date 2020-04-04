@@ -8,6 +8,15 @@ public class RadialPickupUI : MonoBehaviour
     public Camera cam;
     bool isFilling;
 
+    [HideInInspector]
+    public ObjectType objectType;
+
+
+    private void Awake()
+    {
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
     private void OnEnable()
     {
         InvokeRepeating("PositionObject", 0.0f, 0.01f);
@@ -31,8 +40,9 @@ public class RadialPickupUI : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public void SetFilling(bool state)
+    public void SetFilling(bool state, ObjectType type)
     {
+        objectType = type;
         isFilling = state;
     }
     void CheckIfFull()
@@ -41,12 +51,16 @@ public class RadialPickupUI : MonoBehaviour
         {
             isFilling = false;
             radialFill.fillAmount = 0;
-            playerRef.GetComponent<PlayerPickup>().RadialUIFull();
+            if (objectType == ObjectType.Resource)
+                playerRef.GetComponent<PlayerPickup>().RadialUIFull();
+            else
+                playerRef.GetComponent<PlayerPickup>().activeLeverControl.Interact();
         }
     }
 
     void PositionObject()
     {
+        Debug.Log("ABOVE");
         transform.position = cam.WorldToScreenPoint(AbovePlayer());
     }
 }

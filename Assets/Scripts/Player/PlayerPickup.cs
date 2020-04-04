@@ -7,6 +7,8 @@ public class PlayerPickup : MonoBehaviour
     private GameObject deliveryPoint;
     PlayerInventory inventory;
 
+    [HideInInspector]
+    public LeverControl activeLeverControl;
     private void Awake()
     {
         inventory = GetComponent<PlayerInventory>();
@@ -87,7 +89,7 @@ public class PlayerPickup : MonoBehaviour
 
     public void SetRadialFill(bool state)
     {
-        pickupUI.GetComponent<RadialPickupUI>().SetFilling(state);
+        pickupUI.GetComponent<RadialPickupUI>().SetFilling(state, ObjectType.Resource);
     }
 
     public void FetchItemValues()

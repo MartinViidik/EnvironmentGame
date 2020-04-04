@@ -5,3 +5,9 @@
     South,
     West
 }
+
+public enum ObjectType
+{
+    Resource,
+    Lever
+}

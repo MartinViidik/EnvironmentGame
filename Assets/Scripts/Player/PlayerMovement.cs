@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     Direction flyingDirection = Direction.East;
 
     float groundCoordinate;
-
+    public bool active;
     void Awake()
     {
         if (rb == null)
@@ -35,7 +35,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        GetInput();
+        if (active)
+        {
+            GetInput();
+        } else {
+            return;
+        }
     }
 
     private void FixedUpdate()

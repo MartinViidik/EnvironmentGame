@@ -5,11 +5,12 @@ public class DeliveryController : MonoBehaviour
 {
     private Recepie recepie;
 
-    public Recepie[] possible_recepies;
+    public List<Recepie> possible_recepies = new List<Recepie>();
     public GameObject _playerRef;
+    public DeliveryScreen screen;
     private void Awake()
     {
-        recepie = possible_recepies[0];
+        GenerateTask();
     }
 
     public bool CheckInventory()
@@ -40,5 +41,22 @@ public class DeliveryController : MonoBehaviour
     public void RemoveFrom()
     {
         _playerRef.GetComponent<PlayerInventory>().RemoveFromInventory(recepie.gameObject, recepie.amount);
+        screen.EnableDeliveryScreen();
+    }
+
+    public void GenerateTask()
+    {
+        recepie = GetRandomRecepie();
+        screen.GetComponent<DeliveryScreen>().NewTask(TaskDescription());
+    }
+    public string TaskDescription()
+    {
+        return "I have to get: " + recepie.name.ToString() + " for that, get me: " + recepie.amount + "" + recepie.resource;
+    }
+    public Recepie GetRandomRecepie()
+    {
+        Recepie recepie = possible_recepies[Random.Range(0, possible_recepies.Count)];
+        possible_recepies.Remove(recepie);
+        return recepie;
     }
 }

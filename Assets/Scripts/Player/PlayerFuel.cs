@@ -25,10 +25,8 @@ public class PlayerFuel : MonoBehaviour
 
         currentFuel -= amount;
         UpdateFuelBar();
-        Debug.Log("CHEKC0");
         if(currentFuel <= 0 && !outOfFuel)
         {
-            Debug.Log("CHECK!");
             outOfFuel = true;
             amount = 0;
             Lose();

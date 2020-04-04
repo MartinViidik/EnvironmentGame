@@ -64,9 +64,15 @@ public class PlayerMovement : MonoBehaviour
         if (isFlyingBackwards)
         {
             if (flyingDirection == Direction.East)
+            {
+                flyingSpeed *= 0.99f;
                 rb.AddForce(Vector2.right * flyingSpeed);
+            }
             else
+            {
+                flyingSpeed *= 0.99f;
                 rb.AddForce(Vector2.left * flyingSpeed);
+            }
         }
     }
 
@@ -92,11 +98,10 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(EnableGravityForDuration(4.5f, groundPositionY));
     }
 
-
-    public void FlyBackwards(float speed)
+    public void FlyBackwards(float speed, float flyDuration)
     {
         flyingSpeed = speed;
-        StartCoroutine(EnableFlyingBackwardsForDuration(0.7f));
+        StartCoroutine(EnableFlyingBackwardsForDuration(flyDuration));
         if (!playerSprite.flipX)
             flyingDirection = Direction.East;
         else

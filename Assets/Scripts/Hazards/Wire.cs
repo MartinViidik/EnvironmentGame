@@ -5,14 +5,23 @@ using UnityEngine;
 public class Wire : MonoBehaviour
 {
     private bool canHurtPlayer = true;
+    private bool isWireActive = true;
+
     private float fuelDamage = 0.11f;
-    private float collisionUpThrow = 40;
-    private float collisionDefaultUpThrow = 40;
+
+    #region THROWING UP
+    private bool canThrowUpPlayer = false;
+    private float collisionUpThrow = 70;
+    private float collisionDefaultUpThrow = 70;
     private float wireUpThrowStartPosition;
     private bool wireThrowUpLocationSet = false;
-    private float wireKnockbackSpeed = 30f;
+    private Collider2D playerCollision;
+    #endregion
 
-    private bool isWireActive = true;
+    private float wireKnockbackSpeed = 40f;
+    private float wireKnocbackDuration = 30f;
+    private bool canThrowPlayerBack = false;
+    private Direction wireKnockBackDirection;
 
     [SerializeField]
     private Animator wireAnimator;
@@ -62,6 +71,10 @@ public class Wire : MonoBehaviour
         {
             wireThrowUpLocationSet = false;
             collisionUpThrow = collisionDefaultUpThrow;
+            canThrowPlayerBack = false;
+            canThrowUpPlayer = false;
+            playerCollision = collision;
+            StartCoroutine(ThrowPlayerUpForDuration());
         }
     }
 
@@ -70,15 +83,59 @@ public class Wire : MonoBehaviour
         if (!wireThrowUpLocationSet)
         {
             wireUpThrowStartPosition = transform.position.y + 0.5f;
+            Debug.Log("WIRE START POS " + wireUpThrowStartPosition);
+            StartCoroutine(ThrowPlayerBackForDuration());
             playerMovement.FallDown(wireUpThrowStartPosition);
-            playerMovement.FlyBackwards(wireKnockbackSpeed);
+            //playerMovement.FlyBackwards(wireKnockbackSpeed);
             wireThrowUpLocationSet = true;
         }
-        if (collisionUpThrow > 2)
+       
+    }
+
+    private IEnumerator ThrowPlayerUpForDuration()
+    {
+        canThrowUpPlayer = true;
+        yield return new WaitForSeconds(2f);
+        canThrowUpPlayer = false;
+    }
+
+    private IEnumerator ThrowPlayerBackForDuration()
+    {
+        canThrowPlayerBack = true;
+        if (!playerSprite.flipX)
         {
-            collisionUpThrow += 2.5f - 2f * (playerMovement.gameObject.transform.position.y - wireUpThrowStartPosition);
+            wireKnockBackDirection = Direction.East;
         }
-        collision.attachedRigidbody.AddForce(Vector2.up * collisionUpThrow);
+        else
+        {
+            wireKnockBackDirection = Direction.West;
+        }
+        yield return new WaitForSeconds(wireKnocbackDuration);
+        canThrowPlayerBack = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (canThrowUpPlayer)
+        {
+            if (collisionUpThrow > 2)
+            {
+                collisionUpThrow += 2.5f - 0.1f * (Mathf.Abs(playerMovement.gameObject.transform.position.y - wireUpThrowStartPosition));
+            }
+            //Debug.Log("THROWING UP " + Time.time);
+            playerCollision.attachedRigidbody.AddForce(Vector2.up * collisionUpThrow);
+        }
+
+        if (!canThrowPlayerBack)
+            return;
+        if (wireKnockBackDirection == Direction.East)
+        {
+            playerMovement.AddForce(new Vector2(wireKnockbackSpeed, 0));
+        }
+        else
+        {
+            playerMovement.AddForce(new Vector2(-wireKnockbackSpeed, 0));
+        }
     }
 
     private void HurtPlayer()
@@ -87,9 +144,7 @@ public class Wire : MonoBehaviour
             return;
 
         playerFuel.LoseFuel(fuelDamage);
-        if (!playerSprite.flipX)
-            playerMovement.AddForce(new Vector2(wireKnockbackSpeed, 0));
-        else
-            playerMovement.AddForce(new Vector2(-wireKnockbackSpeed, 0));
+
+
     }
 }

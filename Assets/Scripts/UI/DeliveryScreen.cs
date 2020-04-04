@@ -7,6 +7,12 @@ public class DeliveryScreen : MonoBehaviour
     public TMP_Text TaskText;
     public string task;
 
+    private void Awake()
+    {
+        if (playerRef == null)
+            playerRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+    }
+
     public void NewTask(string newTask)
     {
         task = newTask;

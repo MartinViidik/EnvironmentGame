@@ -6,15 +6,21 @@ public class LeverControl : MonoBehaviour
 {
 
     bool canInteract = false;
-    bool areLinkedWiresActive = true;
+    bool areLinkedWiresActive;
 
     [SerializeField]
     private GameObject pickupUI;
 
     [SerializeField]
     Wire[] linkedWires;
+    [SerializeField]
+    Animator leverAnimator;
 
     private PlayerPickup playerPickup;
+
+    float delayBeforeShowingInteractAgain = 2f;
+    float nextTimeWhenShowInteract;
+    bool waitingForPickupToBeActive = false;
 
     private void Awake()
     {
@@ -23,12 +29,17 @@ public class LeverControl : MonoBehaviour
 
     public void Interact()
     {
+       areLinkedWiresActive = linkedWires[0].canHurtPlayer;
+        Debug.Log("linked wires was " + areLinkedWiresActive + " " + Time.time);
         areLinkedWiresActive = !areLinkedWiresActive;
+       Debug.Log("linked wires is " + areLinkedWiresActive + " " + Time.time);
 
-        foreach(Wire wire in linkedWires)
+        foreach (Wire wire in linkedWires)
         {
-            wire.canHurtPlayer = areLinkedWiresActive;
+            wire.Toggle(areLinkedWiresActive);
         }
+        //Debug.Log("set linked wires to " + areLinkedWiresActive + " " + Time.time);
+        leverAnimator.SetBool("down", !areLinkedWiresActive);
         SetPickupUI(false);
     }
 
@@ -60,7 +71,19 @@ public class LeverControl : MonoBehaviour
     {
         if (!canInteract)
             return;
-        Debug.Log("CAN INTERACT");
+        
+        if (!pickupUI.activeInHierarchy && !waitingForPickupToBeActive)
+        {
+            waitingForPickupToBeActive = true;
+            nextTimeWhenShowInteract = Time.time + delayBeforeShowingInteractAgain;
+            return;
+        }
+
+        if (Time.time < nextTimeWhenShowInteract)
+            return;
+        waitingForPickupToBeActive = false;
+        pickupUI.SetActive(true);
+
         if (Input.GetKeyDown(KeyCode.E) && pickupUI.activeInHierarchy)
         {
             SetRadialFill(true);

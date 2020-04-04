@@ -6,7 +6,8 @@ public class Wire : MonoBehaviour
 {
     [HideInInspector]
     public bool canHurtPlayer = true;
-    private bool isWireActive = true;
+    [HideInInspector]
+    public bool isWireActive = true;
 
     private float fuelDamage = 0.61f;
 
@@ -42,6 +43,14 @@ public class Wire : MonoBehaviour
         wireThrowUpLocationSet = false;
     }
 
+
+    public void Toggle(bool setWireActive)
+    {
+        Debug.Log("linked wires was hurt player " + canHurtPlayer + " " + Time.time);
+        canHurtPlayer = setWireActive;
+        Debug.Log("linked wires now can hurt player " + canHurtPlayer + " " + Time.time);
+        wireAnimator.SetBool("active", setWireActive);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

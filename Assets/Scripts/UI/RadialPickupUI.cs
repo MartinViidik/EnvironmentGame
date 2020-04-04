@@ -60,7 +60,6 @@ public class RadialPickupUI : MonoBehaviour
 
     void PositionObject()
     {
-        Debug.Log("ABOVE");
         transform.position = cam.WorldToScreenPoint(AbovePlayer());
     }
 }

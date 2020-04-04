@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Geyser : MonoBehaviour
 {
+    [SerializeField]
+    private bool canHurtPlayer = false;
+    private float fuelDamage = 20f;
+
     private float inactiveGeyserMinDuration = 2f;
     private float inactiveGeyserMaxDuration = 4f;
     private float geyserWarningDuration = 1f;
@@ -19,6 +23,7 @@ public class Geyser : MonoBehaviour
     private Animator geyserAnimator;
 
     private PlayerMovement playerMovement;
+    private PlayerFuel playerFuel;
 
     private float collisionUpThrow = 180;
     private float collisionDefaultUpThrow = 180;
@@ -31,6 +36,7 @@ public class Geyser : MonoBehaviour
         geyserParticleSystem.emissionRate = 0;
         StartCoroutine(ActivateGeyserAfterDuration());
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerFuel = GameObject.FindGameObjectWithTag("PlayerFuel").GetComponent<PlayerFuel>();
     }
 
     private IEnumerator ActivateGeyserAfterDuration()
@@ -81,6 +87,7 @@ public class Geyser : MonoBehaviour
             {
                 geyserThrowUpLocationSet = false;
                 collisionUpThrow = collisionDefaultUpThrow;
+                hurtPlayerDuringActivity = false;
             }
         }
     }
@@ -91,6 +98,7 @@ public class Geyser : MonoBehaviour
         {
             geyserThrowUpLocationSet = false;
             collisionUpThrow = collisionDefaultUpThrow;
+            hurtPlayerDuringActivity = false;
         }
     }
 
@@ -122,8 +130,13 @@ public class Geyser : MonoBehaviour
 
     private void HurtPlayer()
     {
+        if (hurtPlayerDuringActivity)
+            return;
         hurtPlayerDuringActivity = true;
         playerMovement.ThrowPlayerBack();
+
+        if (canHurtPlayer)
+            playerFuel.LoseFuel(fuelDamage);
     }
 
 

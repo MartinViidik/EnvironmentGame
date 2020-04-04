@@ -35,4 +35,8 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+    public bool InventoryValid()
+    {
+       return DeliveryController.GetComponent<DeliveryController>().CheckInventory();
+    }
 }

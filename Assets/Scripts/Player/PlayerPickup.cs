@@ -23,8 +23,9 @@ public class PlayerPickup : MonoBehaviour
 
     public void PickupItem()
     {
+        SetPickupUI(false);
         FetchItemValues();
-        resourceRef.SetActive(false);
+        resourceRef.GetComponent<Dissolve>().SetDissolving(true);
         resourceRef = null;
     }
 

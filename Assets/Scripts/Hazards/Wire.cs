@@ -5,12 +5,12 @@ using UnityEngine;
 public class Wire : MonoBehaviour
 {
     private bool canHurtPlayer = true;
-    private float fuelDamage = 0.06f;
+    private float fuelDamage = 0.11f;
     private float collisionUpThrow = 40;
     private float collisionDefaultUpThrow = 40;
     private float wireUpThrowStartPosition;
     private bool wireThrowUpLocationSet = false;
-    private float wireKnockbackSpeed = 60f;
+    private float wireKnockbackSpeed = 30f;
 
     private bool isWireActive = true;
 
@@ -19,6 +19,7 @@ public class Wire : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private PlayerFuel playerFuel;
+    private SpriteRenderer playerSprite;
 
 
 
@@ -26,6 +27,7 @@ public class Wire : MonoBehaviour
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerFuel = GameObject.FindGameObjectWithTag("PlayerFuel").GetComponent<PlayerFuel>();
+        playerSprite = playerMovement.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
     }
 
 
@@ -81,7 +83,13 @@ public class Wire : MonoBehaviour
 
     private void HurtPlayer()
     {
-        if (canHurtPlayer)
-            playerFuel.LoseFuel(fuelDamage);
+        if (!canHurtPlayer)
+            return;
+
+        playerFuel.LoseFuel(fuelDamage);
+        if (!playerSprite.flipX)
+            playerMovement.AddForce(new Vector2(wireKnockbackSpeed, 0));
+        else
+            playerMovement.AddForce(new Vector2(-wireKnockbackSpeed, 0));
     }
 }

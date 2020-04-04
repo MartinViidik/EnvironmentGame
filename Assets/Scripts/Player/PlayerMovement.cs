@@ -87,13 +87,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Speed", speed);
     }
 
-    public void ThrowPlayerBack()
-    {
-        //Debug.Log("I'M HURT!");
-    }
-
-    float fallSpeed = 10f;
-    float defaultFallSpeed = 10f;
     public void FallDown(float groundPositionY)
     {
         StartCoroutine(EnableGravityForDuration(4.5f, groundPositionY));

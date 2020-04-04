@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool checkForGround = false;
     bool isFlyingBackwards = false;
+    float flyingSpeed; // depends on trap
     Direction flyingDirection = Direction.East;
 
     float groundCoordinate;
@@ -63,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
         if (isFlyingBackwards)
         {
             if (flyingDirection == Direction.East)
-                rb.AddForce(Vector2.right * 110);
+                rb.AddForce(Vector2.right * flyingSpeed);
             else
-                rb.AddForce(Vector2.left * 110);
+                rb.AddForce(Vector2.left * flyingSpeed);
         }
     }
 
@@ -99,13 +100,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void FlyBackwards()
+    public void FlyBackwards(float speed)
     {
+        flyingSpeed = speed;
         StartCoroutine(EnableFlyingBackwardsForDuration(0.7f));
         if (!playerSprite.flipX)
             flyingDirection = Direction.East;
         else
             flyingDirection = Direction.West;
+    }
+
+    public void AddForce(Vector2 force)
+    {
+        rb.AddForce(force);
     }
 
     private IEnumerator EnableFlyingBackwardsForDuration(float duration)

@@ -7,6 +7,7 @@ public class Geyser : MonoBehaviour
     [SerializeField]
     private bool canHurtPlayer = false;
     private float fuelDamage = 20f;
+    private float geyserKnockbackSpeed = 110f;
 
     private float inactiveGeyserMinDuration = 2f;
     private float inactiveGeyserMaxDuration = 4f;
@@ -118,7 +119,7 @@ public class Geyser : MonoBehaviour
         {
             geyserUpThrowStartPosition = transform.position.y + 0.5f;
             playerMovement.FallDown(geyserUpThrowStartPosition);
-            playerMovement.FlyBackwards();
+            playerMovement.FlyBackwards(geyserKnockbackSpeed);
             geyserThrowUpLocationSet = true;
         }
         if (collisionUpThrow > 2)

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve
+  m_Name: Test
   m_Shader: {fileID: -6465566751694194690, guid: 4a55e5a3ae74033488dc8fb26971aef0,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA

@@ -7,12 +7,13 @@ public class Wire : MonoBehaviour
     private bool canHurtPlayer = true;
     private bool isWireActive = true;
 
-    private float fuelDamage = 0.11f;
+    private float fuelDamage = 0.61f;
 
     #region THROWING UP
     private bool canThrowUpPlayer = false;
-    private float collisionUpThrow = 70;
-    private float collisionDefaultUpThrow = 70;
+    private float collisionUpThrow = 210;
+    private float throwUpDuration = 0.1f;
+    private float collisionDefaultUpThrow = 120;
     private float wireUpThrowStartPosition;
     private bool wireThrowUpLocationSet = false;
     private Collider2D playerCollision;
@@ -37,6 +38,7 @@ public class Wire : MonoBehaviour
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerFuel = GameObject.FindGameObjectWithTag("PlayerFuel").GetComponent<PlayerFuel>();
         playerSprite = playerMovement.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        wireThrowUpLocationSet = false;
     }
 
 
@@ -54,11 +56,12 @@ public class Wire : MonoBehaviour
             if (isWireActive)
             {
 
-                ThrowPlayerUpwards(collision);
+                //ThrowPlayerUpwards(collision);
                 HurtPlayer();
             }
             else
             {
+                Debug.Log("WIRE NOT ACTIVE!");
                 wireThrowUpLocationSet = false;
                 collisionUpThrow = collisionDefaultUpThrow;
             }
@@ -72,22 +75,24 @@ public class Wire : MonoBehaviour
             wireThrowUpLocationSet = false;
             collisionUpThrow = collisionDefaultUpThrow;
             canThrowPlayerBack = false;
-            canThrowUpPlayer = false;
-            playerCollision = collision;
-            StartCoroutine(ThrowPlayerUpForDuration());
+            //canThrowUpPlayer = false;
         }
     }
 
     private void ThrowPlayerUpwards(Collider2D collision)
     {
+        if (canThrowUpPlayer)
+            return;
         if (!wireThrowUpLocationSet)
         {
+            wireThrowUpLocationSet = true;
             wireUpThrowStartPosition = transform.position.y + 0.5f;
-            Debug.Log("WIRE START POS " + wireUpThrowStartPosition);
+            Debug.Log("WIRE START POS " + Time.time) ;
             StartCoroutine(ThrowPlayerBackForDuration());
             playerMovement.FallDown(wireUpThrowStartPosition);
             //playerMovement.FlyBackwards(wireKnockbackSpeed);
-            wireThrowUpLocationSet = true;
+            playerCollision = collision;
+            StartCoroutine(ThrowPlayerUpForDuration());        
         }
        
     }
@@ -95,7 +100,7 @@ public class Wire : MonoBehaviour
     private IEnumerator ThrowPlayerUpForDuration()
     {
         canThrowUpPlayer = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(throwUpDuration);
         canThrowUpPlayer = false;
     }
 
@@ -120,7 +125,7 @@ public class Wire : MonoBehaviour
         {
             if (collisionUpThrow > 2)
             {
-                collisionUpThrow += 2.5f - 0.1f * (Mathf.Abs(playerMovement.gameObject.transform.position.y - wireUpThrowStartPosition));
+                collisionUpThrow += 2.5f;// - 0.1f * (Mathf.Abs(playerMovement.gameObject.transform.position.y - wireUpThrowStartPosition));
             }
             //Debug.Log("THROWING UP " + Time.time);
             playerCollision.attachedRigidbody.AddForce(Vector2.up * collisionUpThrow);

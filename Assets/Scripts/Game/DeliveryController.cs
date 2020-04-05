@@ -15,32 +15,47 @@ public class DeliveryController : MonoBehaviour
 
     public bool CheckInventory()
     {
-        int amount = recepie.amount;
+        for (int i = 0; i < recepie.amount.Length; i++)
+        {
+            if (CheckOneIngredient(i) == false)
+                return false;
+        }
+        return true;
+    }
+
+    private bool CheckOneIngredient(int ingredientID)
+    {
+        int amount = recepie.amount[ingredientID];
         int j = 0;
         PlayerInventory Inv = _playerRef.GetComponent<PlayerInventory>();
-        for(int i = 0; i != Inv.inventory.Count; i++)
+        for (int i = 0; i != Inv.inventory.Count; i++)
         {
-            if(recepie.resource == Inv.inventory[i].GetComponent<Resource>().type)
+            if (recepie.resource[ingredientID] == Inv.inventory[i].GetComponent<Resource>().type)
             {
                 if (j == amount)
                 {
                     break;
-                } else {
+                }
+                else
+                {
                     j++;
                 }
             }
         }
+        Debug.Log("you have " + j + " from " + amount + " of " + recepie.resource[ingredientID].ToString());
         if (j >= amount)
         {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
     public void RemoveFrom()
     {
-        _playerRef.GetComponent<PlayerInventory>().RemoveFromInventory(recepie.gameObject, recepie.amount);
+        _playerRef.GetComponent<PlayerInventory>().RemoveFromInventory(recepie);
         Debug.Log(possible_recepies.Count);
         if(possible_recepies.Count != 0 )
         {
@@ -59,7 +74,15 @@ public class DeliveryController : MonoBehaviour
     }
     public string TaskDescription()
     {
-        return "I have to get: " + recepie.name.ToString() + " for that, get me: " + recepie.amount + "" + recepie.resource;
+        string description = "I have to get: " + recepie.name.ToString() + " for that, get me: ";
+        for (int i = 0; i < recepie.amount.Length; i++)
+        {
+            if (i > 0)
+                description += "\n AND \n";
+            description += recepie.amount[i] + " " + recepie.resource[i];
+
+        }
+        return description;
     }
     public Recepie GetRandomRecepie()
     {

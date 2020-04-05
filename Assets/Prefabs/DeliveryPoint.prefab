@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4101289666410969396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 5.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2690867293509993067}
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 95a0019dd32c8d44596a8194fd851dbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 2690867293509993067}
   - component: {fileID: 5594417382617512360}
   - component: {fileID: 787595157397135539}
+  - component: {fileID: 1318351105}
   m_Layer: 0
   m_Name: DeliveryPoint
   m_TagString: DeliveryPoint
@@ -108,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 4826736869460518153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.62654, y: 0.62654, z: 0.62654}
   m_Children:
   - {fileID: 3296389351900422490}
   m_Father: {fileID: 0}
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.039491653, y: 0.013165474}
+  m_Offset: {x: 0.039491653, y: 5.959822}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -138,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.511086, y: 5.1339245}
+  m_Size: {x: 20.511086, y: 5.0074034}
   m_EdgeRadius: 0
 --- !u!114 &787595157397135539
 MonoBehaviour:
@@ -153,6 +154,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possible_recepies:
-  - {fileID: 0}
+  - {fileID: 7990319185526445452, guid: e59b55aff51d4f24f8b4c4775beb4ba2, type: 3}
+  - {fileID: 7090882389402272714, guid: 95372c483bec9144597a1642895f4fe8, type: 3}
+  - {fileID: 8492639707472176463, guid: 1c9354941910b4f478a64a6e5474882a, type: 3}
+  - {fileID: 928825658474408227, guid: c1ee3e5714fe8bf4c99ff72b6b09bdc8, type: 3}
   _playerRef: {fileID: 0}
-  forDeletion: []
+  screen: {fileID: 0}
+--- !u!114 &1318351105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826736869460518153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d39a1e9596e67545aa6e52746f23734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  credits: {fileID: 0}
+  mainMenu: {fileID: 0}
+  areYouSure: {fileID: 0}
+  quit: 0

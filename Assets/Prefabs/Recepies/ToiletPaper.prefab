@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74287a18e31cdf4d9dc5d1821efd2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 5
-  resource: 0
+  amount: 03000000
+  resource: 00000000

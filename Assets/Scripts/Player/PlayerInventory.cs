@@ -19,12 +19,20 @@ public class PlayerInventory : MonoBehaviour
         DeliveryController.GetComponent<DeliveryController>().CheckInventory();
     }
 
-    public void RemoveFromInventory(GameObject resource, int amount)
+    public void RemoveFromInventory(Recepie recipe)//, GameObject resource, int amount)
+    {
+        for (int i = 0; i < recipe.resource.Length; i++)
+        {
+            RemoveIngredientFromInventory(i, recipe.gameObject, recipe.amount[i]);
+        }
+    }
+
+    private void RemoveIngredientFromInventory(int ingredientID, GameObject resource, int amount)
     {
         int j = 0;
-        for(int i = 0; i != inventory.Count; i++)
+        for (int i = 0; i != inventory.Count; i++)
         {
-            if(inventory[i].GetComponent<Resource>().type == resource.GetComponent<Recepie>().resource)
+            if (inventory[i].GetComponent<Resource>().type == resource.GetComponent<Recepie>().resource[ingredientID])
             {
                 inventory.Remove(inventory[i]);
                 j++;
@@ -35,6 +43,7 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+
     public bool InventoryValid()
     {
        return DeliveryController.GetComponent<DeliveryController>().CheckInventory();

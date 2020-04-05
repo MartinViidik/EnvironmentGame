@@ -49,7 +49,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.8060967
+  m_Radius: 1
 --- !u!114 &1633070910805691762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  amount: 6
+  amount: 8
 --- !u!114 &1633070910805691761
 MonoBehaviour:
   m_ObjectHideFlags: 0

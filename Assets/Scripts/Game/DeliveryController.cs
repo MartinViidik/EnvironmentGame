@@ -41,7 +41,15 @@ public class DeliveryController : MonoBehaviour
     public void RemoveFrom()
     {
         _playerRef.GetComponent<PlayerInventory>().RemoveFromInventory(recepie.gameObject, recepie.amount);
-        screen.EnableDeliveryScreen();
+        Debug.Log(possible_recepies.Count);
+        if(possible_recepies.Count != 0 )
+        {
+            screen.EnableDeliveryScreen();
+            GenerateTask();
+        } else {
+            screen.EnableDeliveryScreen();
+            screen.gameEnded = true;
+        }
     }
 
     public void GenerateTask()

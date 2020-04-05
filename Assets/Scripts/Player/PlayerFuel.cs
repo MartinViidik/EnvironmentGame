@@ -8,6 +8,7 @@ public class PlayerFuel : MonoBehaviour
     private bool outOfFuel = false;
     private float maxFuel = 100;
     private float currentFuel;
+    public PlayerSound sound;
 
     [SerializeField]
     Image fuelBar;
@@ -24,6 +25,7 @@ public class PlayerFuel : MonoBehaviour
             return;
 
         currentFuel -= amount;
+        sound.PlayHurtSound();
         UpdateFuelBar();
         if(currentFuel <= 0 && !outOfFuel)
         {
@@ -40,6 +42,7 @@ public class PlayerFuel : MonoBehaviour
 
     private void Lose()
     {
+        sound.PlayDeathSound();
         Debug.Log("lose");
     }
    

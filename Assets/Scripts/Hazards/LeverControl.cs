@@ -22,13 +22,33 @@ public class LeverControl : MonoBehaviour
     float nextTimeWhenShowInteract;
     bool waitingForPickupToBeActive = false;
 
+    private AudioSource ac;
+    public AudioClip[] turnOn;
+    public AudioClip[] turnOff;
+
     private void Awake()
     {
         playerPickup = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>();
+        ac = GetComponent<AudioSource>();
+    }
+
+    void PlaySound(AudioClip[] clip)
+    {
+        if (ac.isPlaying)
+        {
+            ac.Stop();
+        }
+        ac.PlayOneShot(clip[Random.Range(0, clip.Length)]);
     }
 
     public void Interact()
     {
+        if (areLinkedWiresActive)
+        {
+            PlaySound(turnOff);
+        } else {
+            PlaySound(turnOn);
+        }
        areLinkedWiresActive = linkedWires[0].canHurtPlayer;
         Debug.Log("linked wires was " + areLinkedWiresActive + " " + Time.time);
         areLinkedWiresActive = !areLinkedWiresActive;

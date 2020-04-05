@@ -6,16 +6,20 @@ public class RadialPickupUI : MonoBehaviour
     public Image radialFill;
     public GameObject playerRef;
     public Camera cam;
+    public AudioClip confirm;
     bool isFilling;
 
     [HideInInspector]
     public ObjectType objectType;
+
+    private AudioSource ac;
 
 
     private void Awake()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        ac = GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
@@ -49,6 +53,7 @@ public class RadialPickupUI : MonoBehaviour
     {
         if(radialFill.fillAmount == 1)
         {
+            ac.PlayOneShot(confirm);
             isFilling = false;
             radialFill.fillAmount = 0;
             if (objectType == ObjectType.Resource)

@@ -59,6 +59,7 @@ public class PlayerPickup : MonoBehaviour
     {
         SetPickupUI(false);
         FetchItemValues();
+        GetComponent<PlayerSound>().PlayPickupSound();
         resourceRef.GetComponent<Dissolve>().SetDissolving(true);
         resourceRef = null;
     }

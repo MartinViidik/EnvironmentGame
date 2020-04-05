@@ -45,6 +45,11 @@ public class MenuController : MonoBehaviour
         areYouSure.SetActive(true);
     }
 
+    public void ForceReturnMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void EnableAreYouSure()
     {
         areYouSure.SetActive(true);

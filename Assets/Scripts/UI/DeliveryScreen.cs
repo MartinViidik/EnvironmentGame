@@ -3,9 +3,11 @@ using TMPro;
 
 public class DeliveryScreen : MonoBehaviour
 {
+    public MenuController menu;
     public PlayerMovement playerRef;
     public TMP_Text TaskText;
     public string task;
+    public bool gameEnded = false;
 
     private void Awake()
     {
@@ -34,6 +36,10 @@ public class DeliveryScreen : MonoBehaviour
     private void OnDisable()
     {
         playerRef.active = true;
+        if (gameEnded)
+        {
+            menu.ForceReturnMenu();
+        }
     }
 
     public void EnableDeliveryScreen()
@@ -41,4 +47,5 @@ public class DeliveryScreen : MonoBehaviour
         gameObject.SetActive(true);
         TaskText.text = "thanks bro";
     }
+
 }

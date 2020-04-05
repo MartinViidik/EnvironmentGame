@@ -32,8 +32,23 @@ public class Geyser : MonoBehaviour
     private float geyserUpThrowStartPosition;
     private bool geyserThrowUpLocationSet = false;
 
+    public AudioClip[] burst;
+    public AudioClip[] windUp;
+    private AudioSource ac;
+
+    private void PlaySound(AudioClip[] type)
+    {
+        if (ac.isPlaying)
+        {
+            ac.Stop();
+        }
+        ac.PlayOneShot(type[Random.Range(0, type.Length)]);
+    }
+
+
     private void Start()
     {
+        ac = GetComponent<AudioSource>();
         geyserParticleSystem = GetComponent<ParticleSystem>();
         geyserParticleSystem.emissionRate = 0;
         StartCoroutine(ActivateGeyserAfterDuration());
@@ -48,9 +63,10 @@ public class Geyser : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         geyserAnimator.SetBool("isWarning", true);
+        PlaySound(windUp);
         yield return new WaitForSeconds(geyserWarningDuration);
         geyserAnimator.SetBool("isWarning", false);
-
+        PlaySound(burst);
         isGeyserActive = true;
         geyserParticleSystem.emissionRate = geyserEmissionRate;
         StartCoroutine(EndGeyserActivityAfterDuration());

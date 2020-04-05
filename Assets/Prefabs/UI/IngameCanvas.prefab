@@ -66,6 +66,7 @@ MonoBehaviour:
   radialFill: {fileID: 5506038859546601380}
   playerRef: {fileID: 0}
   cam: {fileID: 0}
+  confirm: {fileID: 8300000, guid: acbe28ec93a444740a14de3bf8004691, type: 3}
   objectType: 0
 --- !u!1 &440811372245618907
 GameObject:
@@ -2369,9 +2370,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d7bae87039cee4691a38e4a9347e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 0}
   playerRef: {fileID: 0}
   TaskText: {fileID: 2995233751735712326}
   task: 
+  gameEnded: 0
 --- !u!1 &8992309317615869220
 GameObject:
   m_ObjectHideFlags: 0

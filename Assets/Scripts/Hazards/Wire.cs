@@ -32,11 +32,12 @@ public class Wire : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerFuel playerFuel;
     private SpriteRenderer playerSprite;
-
-
+    private AudioSource ac;
 
     private void Start()
     {
+        ac = GetComponent<AudioSource>();
+        ac.pitch = Random.Range(0.75f, 1f);
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerFuel = GameObject.FindGameObjectWithTag("PlayerFuel").GetComponent<PlayerFuel>();
         playerSprite = playerMovement.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
@@ -46,6 +47,12 @@ public class Wire : MonoBehaviour
 
     public void Toggle(bool setWireActive)
     {
+        if (setWireActive)
+        {
+            ac.volume = 1;
+        } else {
+            ac.volume = 0;
+        }
         Debug.Log("linked wires was hurt player " + canHurtPlayer + " " + Time.time);
         canHurtPlayer = setWireActive;
         Debug.Log("linked wires now can hurt player " + canHurtPlayer + " " + Time.time);

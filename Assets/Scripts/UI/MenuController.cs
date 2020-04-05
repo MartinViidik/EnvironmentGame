@@ -47,6 +47,7 @@ public class MenuController : MonoBehaviour
 
     public void ForceReturnMenu()
     {
+        AudioListener.volume = 1;
         SceneManager.LoadScene(0);
     }
 
@@ -67,6 +68,7 @@ public class MenuController : MonoBehaviour
             Application.Quit();
         } else {
             Time.timeScale = 1;
+            AudioListener.volume = 1;
             SceneManager.LoadScene(0);
         }
     }

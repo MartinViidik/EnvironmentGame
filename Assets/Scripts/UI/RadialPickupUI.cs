@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RadialPickupUI : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class RadialPickupUI : MonoBehaviour
     public ObjectType objectType;
 
     private AudioSource ac;
-
 
     private void Awake()
     {

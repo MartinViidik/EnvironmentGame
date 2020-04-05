@@ -54,13 +54,19 @@ public class RadialPickupUI : MonoBehaviour
     {
         if(radialFill.fillAmount == 1)
         {
+            Debug.Log("FULL");
             ac.PlayOneShot(confirm);
             isFilling = false;
             radialFill.fillAmount = 0;
             if (objectType == ObjectType.Resource)
+            {
                 playerRef.GetComponent<PlayerPickup>().RadialUIFull();
+            }
             else
+            {
+                Debug.Log("fuuck");
                 playerRef.GetComponent<PlayerPickup>().activeLeverControl.Interact();
+            }
         }
     }
 

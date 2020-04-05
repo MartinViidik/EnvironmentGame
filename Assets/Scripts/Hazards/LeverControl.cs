@@ -25,15 +25,19 @@ public class LeverControl : MonoBehaviour
     private AudioSource ac;
     public AudioClip[] turnOn;
     public AudioClip[] turnOff;
+    RadialPickupUI radialPickup;
 
     private void Awake()
     {
         playerPickup = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickup>();
         ac = GetComponent<AudioSource>();
+        pickupUI = playerPickup.pickupUI;
+        radialPickup = pickupUI.GetComponent<RadialPickupUI>();
     }
 
     void PlaySound(AudioClip[] clip)
     {
+        Debug.Log("yes");
         if (ac.isPlaying)
         {
             ac.Stop();
@@ -43,6 +47,7 @@ public class LeverControl : MonoBehaviour
 
     public void Interact()
     {
+        Debug.Log("WHAT");
         if (areLinkedWiresActive)
         {
             PlaySound(turnOff);
@@ -68,6 +73,7 @@ public class LeverControl : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             canInteract = true;
+            playerPickup.allowedToPickUpItem = false;
             SetPickupUI(true);
         }
     }
@@ -77,7 +83,9 @@ public class LeverControl : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             canInteract = false;
+            playerPickup.allowedToPickUpItem = true;
             SetPickupUI(false);
+            radialPickup.pickupInfoText.gameObject.SetActive(false);
         }
     }
 
@@ -117,12 +125,18 @@ public class LeverControl : MonoBehaviour
     public void SetRadialFill(bool state)
     {
         playerPickup.activeLeverControl = this;
-        pickupUI.GetComponent<RadialPickupUI>().SetFilling(state, ObjectType.Lever);
+        radialPickup.SetFilling(state, ObjectType.Lever);
+
     }
 
     void SetPickupUI(bool state)
     {
         pickupUI.SetActive(state);
+        if (state)
+        {
+            radialPickup.pickupInfoText.gameObject.SetActive(true);
+            radialPickup.pickupInfoText.text = "Interact";
+        }
     }
 
 }

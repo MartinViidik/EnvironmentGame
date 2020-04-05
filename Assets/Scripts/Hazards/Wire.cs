@@ -9,7 +9,7 @@ public class Wire : MonoBehaviour
     [HideInInspector]
     public bool isWireActive = true;
 
-    private float fuelDamage = 0.61f;
+    private float fuelDamage = 0.91f;
 
     #region THROWING UP
     private bool canThrowUpPlayer = false;

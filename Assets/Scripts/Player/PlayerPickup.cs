@@ -2,6 +2,7 @@
 
 public class PlayerPickup : MonoBehaviour
 {
+    public bool allowedToPickUpItem = true;
     public GameObject pickupUI;
     private GameObject resourceRef;
     private GameObject deliveryPoint;
@@ -84,11 +85,11 @@ public class PlayerPickup : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && pickupUI.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.E) && pickupUI.activeInHierarchy && allowedToPickUpItem)
         {
             SetRadialFill(true);
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) && pickupUI.activeInHierarchy && allowedToPickUpItem)
         {
             SetRadialFill(false);
         }
@@ -103,6 +104,7 @@ public class PlayerPickup : MonoBehaviour
     {
         RadialPickupUI radialPickup = pickupUI.GetComponent<RadialPickupUI>();
         radialPickup.SetFilling(state, ObjectType.Resource);
+        Debug.Log("calling wrong");
     }
 
     public void FetchItemValues()

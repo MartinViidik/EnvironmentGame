@@ -9828,7 +9828,6 @@ MonoBehaviour:
   canHurtPlayer: 1
   isWireActive: 1
   wireAnimator: {fileID: 3159572215165103642}
-  electricty: {fileID: 8300000, guid: 94a20bc966ca78240a7933d9e7df574f, type: 3}
 --- !u!61 &3159572216720146078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9874,11 +9873,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 5
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

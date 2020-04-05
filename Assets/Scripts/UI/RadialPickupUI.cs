@@ -4,6 +4,7 @@ using TMPro;
 
 public class RadialPickupUI : MonoBehaviour
 {
+    public TextMeshProUGUI pickupInfoText;
     public Image radialFill;
     public GameObject playerRef;
     public Camera cam;

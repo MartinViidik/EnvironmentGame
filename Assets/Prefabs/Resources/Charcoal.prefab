@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  amount: 8
+  amount: 1
 --- !u!114 &2856544169701252533
 MonoBehaviour:
   m_ObjectHideFlags: 0

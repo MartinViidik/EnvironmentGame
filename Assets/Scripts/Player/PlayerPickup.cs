@@ -6,28 +6,39 @@ public class PlayerPickup : MonoBehaviour
     private GameObject resourceRef;
     private GameObject deliveryPoint;
     PlayerInventory inventory;
+    private RadialPickupUI radialPickup; 
 
     [HideInInspector]
     public LeverControl activeLeverControl;
     private void Awake()
     {
         inventory = GetComponent<PlayerInventory>();
+        radialPickup = pickupUI.GetComponent<RadialPickupUI>();
     }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Resource"))
         {
             resourceRef = col.gameObject;
+            SetRadialPickupText(true, "Pick up " + col.gameObject.GetComponent<Resource>().type);
             SetPickupUI(true);        
         }
         if (col.gameObject.CompareTag("DeliveryPoint"))
         {
             if (inventory.InventoryValid())
             {
+                SetRadialPickupText(true, "Recycle");
                 deliveryPoint = col.gameObject;
                 SetPickupUI(true);
             }
         }
+    }
+
+
+    private void SetRadialPickupText(bool enable, string text = "")
+    {
+        radialPickup.pickupInfoText.gameObject.SetActive(enable);
+        radialPickup.pickupInfoText.text = text;
     }
     private void OnTriggerExit2D(Collider2D col)
     {
@@ -90,7 +101,8 @@ public class PlayerPickup : MonoBehaviour
 
     public void SetRadialFill(bool state)
     {
-        pickupUI.GetComponent<RadialPickupUI>().SetFilling(state, ObjectType.Resource);
+        RadialPickupUI radialPickup = pickupUI.GetComponent<RadialPickupUI>();
+        radialPickup.SetFilling(state, ObjectType.Resource);
     }
 
     public void FetchItemValues()

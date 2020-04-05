@@ -5,6 +5,8 @@ public class PlayerInventory : MonoBehaviour
 {
     public GameObject DeliveryController;
 
+    public IngredientUI[] ingredientUIs;
+
     public List<GameObject> inventory = new List<GameObject>();
     public void AddToInventory(Resource resource, int amount)
     {
@@ -15,6 +17,12 @@ public class PlayerInventory : MonoBehaviour
             newResource.hideFlags = HideFlags.HideInHierarchy;
             newResource.SetActive(false);
             inventory.Add(newResource);
+        }
+
+        foreach (IngredientUI ingredient in ingredientUIs)
+        {
+            if (ingredient.resourceType == resource.type)
+                ingredient.UpdateIngredientCount(amount);
         }
         DeliveryController.GetComponent<DeliveryController>().CheckInventory();
     }
@@ -34,6 +42,14 @@ public class PlayerInventory : MonoBehaviour
         {
             if (inventory[i].GetComponent<Resource>().type == resource.GetComponent<Recepie>().resource[ingredientID])
             {
+                foreach (IngredientUI ingredient in ingredientUIs)
+                {
+                    if (ingredient.resourceType == inventory[i].GetComponent<Resource>().type)
+                    {
+                        Debug.Log("removing " + amount + " of " + inventory[i].GetComponent<Resource>().type);
+                        ingredient.UpdateIngredientCount(-1);
+                    }
+                }
                 inventory.Remove(inventory[i]);
                 j++;
                 if (j == amount)
@@ -42,6 +58,7 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+
     }
 
     public bool InventoryValid()

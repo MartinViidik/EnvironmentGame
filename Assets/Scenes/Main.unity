@@ -1551,6 +1551,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2733431183191625331, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733431183191625331, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733431183191625331, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733431183191625331, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6460121
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733431183191625331, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.36445355
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071767685103093513, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071767685103093513, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071767685103093513, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071767685103093513, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071767685103093513, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -180
+      objectReference: {fileID: 0}
     - target: {fileID: 4282279669338492129, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1661,6 +1711,11 @@ PrefabInstance:
       propertyPath: pickupUI
       value: 
       objectReference: {fileID: 1388621585}
+    - target: {fileID: 7297531344892203595, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
+        type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8818450107827567603, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
         type: 3}
       propertyPath: fuelBar

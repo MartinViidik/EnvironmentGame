@@ -15,10 +15,11 @@ public class PlayerSound : MonoBehaviour
 
     public void PlayPickupSound()
     {
-        if (!ac.isPlaying)
+        if (ac.isPlaying)
         {
-            ac.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)]);
+            ac.Stop();
         }
+        ac.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)]);
     }
 
     public void PlayHurtSound()

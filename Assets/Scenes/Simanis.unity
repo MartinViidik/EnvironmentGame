@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 1206951870}
+    - target: {fileID: 1429920688, guid: ff4f8500f9c363c4f823833afd75ec70, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 1848922699}
     - target: {fileID: 393082651457490245, guid: ff4f8500f9c363c4f823833afd75ec70,
         type: 3}
       propertyPath: m_IsActive
@@ -534,6 +538,11 @@ PrefabInstance:
     - target: {fileID: 5802411225968424410, guid: ff4f8500f9c363c4f823833afd75ec70,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935329726884637471, guid: ff4f8500f9c363c4f823833afd75ec70,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7634465509877333523, guid: ff4f8500f9c363c4f823833afd75ec70,
@@ -4970,6 +4979,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3159572216720146077, guid: 338fe9e35c4aa1242b98e1248aa7f24b,
     type: 3}
   m_PrefabInstance: {fileID: 3159572216297348072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1848922699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5935329726884637471, guid: ff4f8500f9c363c4f823833afd75ec70,
+    type: 3}
+  m_PrefabInstance: {fileID: 361830329}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2037586083
 GameObject:

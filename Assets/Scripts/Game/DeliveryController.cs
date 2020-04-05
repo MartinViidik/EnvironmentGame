@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DeliveryController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DeliveryController : MonoBehaviour
     public List<Recepie> possible_recepies = new List<Recepie>();
     public GameObject _playerRef;
     public DeliveryScreen screen;
+    public TMP_Text goalText;
     private void Awake()
     {
         GenerateTask();
@@ -71,6 +73,19 @@ public class DeliveryController : MonoBehaviour
     {
         recepie = GetRandomRecepie();
         screen.GetComponent<DeliveryScreen>().NewTask(TaskDescription());
+        SetGoal();
+    }
+
+    public void SetGoal()
+    {
+        string goal = "";
+        for (int i = 0; i != recepie.resource.Length; i++){
+            goal += recepie.amount[i];
+            goal += " ";
+            goal += recepie.resource[i];
+            goal += " ";
+        }
+        goalText.text = goal;
     }
     public string TaskDescription()
     {

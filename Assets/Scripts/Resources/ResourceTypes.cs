@@ -1,5 +1,10 @@
 ﻿public enum ResourceType
 {
     Paper,
-    TearsOfMartin
+    Ash,
+    Wire,
+    Fat,
+    Charcoal,
+    Lead,
+    Diode
 }

@@ -26,6 +26,8 @@ public class CameraFollow : MonoBehaviour
             interpVelocity = targetDirection.magnitude * 5f;
 
             targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime * 5);
+            targetPos.x = Mathf.Clamp(targetPos.x, -11, 11);
+            targetPos.y = Mathf.Clamp(targetPos.y, -15, 15);
             transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
         }
     }

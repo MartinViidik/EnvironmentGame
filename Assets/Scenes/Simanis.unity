@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &102567170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 393082651457490245, guid: ff4f8500f9c363c4f823833afd75ec70,
+    type: 3}
+  m_PrefabInstance: {fileID: 361830329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &358302611
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +179,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 421373056, guid: ff4f8500f9c363c4f823833afd75ec70, type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 1206951867}
+    - target: {fileID: 421373056, guid: ff4f8500f9c363c4f823833afd75ec70, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1181619681}
+    - target: {fileID: 393082651457490245, guid: ff4f8500f9c363c4f823833afd75ec70,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3386941524717650945, guid: ff4f8500f9c363c4f823833afd75ec70,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -376,12 +395,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff4f8500f9c363c4f823833afd75ec70, type: 3}
---- !u!1 &361830330 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5506038859276692696, guid: ff4f8500f9c363c4f823833afd75ec70,
-    type: 3}
-  m_PrefabInstance: {fileID: 361830329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &750861926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1551,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338fe9e35c4aa1242b98e1248aa7f24b, type: 3}
+--- !u!20 &1181619681 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7995035050507999415, guid: 9277bd2032696054191b52e401727f30,
+    type: 3}
+  m_PrefabInstance: {fileID: 1474079142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1206951867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4282279669338492156, guid: a7ec04e3ca947de4e8c6b40e8056f0e4,
@@ -4658,7 +4677,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pickupUI
       value: 
-      objectReference: {fileID: 361830330}
+      objectReference: {fileID: 102567170}
     - target: {fileID: 1034391138362374669, guid: d13b51c00884bf24d9b0bb1c3f54eeb1,
         type: 3}
       propertyPath: linkedWires.Array.data[0]
@@ -4857,7 +4876,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pickupUI
       value: 
-      objectReference: {fileID: 361830330}
+      objectReference: {fileID: 102567170}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7ec04e3ca947de4e8c6b40e8056f0e4, type: 3}
 --- !u!1001 &5177579559365153663

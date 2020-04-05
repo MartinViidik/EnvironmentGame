@@ -9943,7 +9943,7 @@ PrefabInstance:
     - target: {fileID: 4689949847274740398, guid: f52dede9cf233e94d9a8b5a3aa496654,
         type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 0.8934431
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4689949847274740398, guid: f52dede9cf233e94d9a8b5a3aa496654,
         type: 3}
@@ -9963,12 +9963,22 @@ PrefabInstance:
     - target: {fileID: 4689949847274740398, guid: f52dede9cf233e94d9a8b5a3aa496654,
         type: 3}
       propertyPath: m_Intensity
-      value: 2.05
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4689949847274740398, guid: f52dede9cf233e94d9a8b5a3aa496654,
         type: 3}
       propertyPath: m_FalloffIntensity
-      value: 0
+      value: 0.929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689949847274740398, guid: f52dede9cf233e94d9a8b5a3aa496654,
+        type: 3}
+      propertyPath: m_LightVolumeOpacity
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689949847274740398, guid: f52dede9cf233e94d9a8b5a3aa496654,
+        type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8001244921569700108, guid: f52dede9cf233e94d9a8b5a3aa496654,
         type: 3}

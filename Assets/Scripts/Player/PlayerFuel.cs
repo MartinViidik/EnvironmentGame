@@ -9,6 +9,7 @@ public class PlayerFuel : MonoBehaviour
     private float maxFuel = 100;
     private float currentFuel;
     public PlayerSound sound;
+    public GameObject deathScreen;
 
     [SerializeField]
     Image fuelBar;
@@ -43,6 +44,7 @@ public class PlayerFuel : MonoBehaviour
     private void Lose()
     {
         sound.PlayDeathSound();
+        deathScreen.SetActive(true);
         Debug.Log("lose");
     }
    
